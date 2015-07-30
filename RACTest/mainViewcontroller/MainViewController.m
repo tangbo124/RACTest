@@ -93,9 +93,14 @@ static NSString *reuseCell = @"cell";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RACSignal *selectedSignal = [self.viewModel didSelectedRowAtIndexPath:indexPath];
+    RAC(self.label, text) = selectedSignal;
+    /*
+     *等同于RAC(self.label, text) = selectedSignal;
+     *
     [selectedSignal subscribeNext:^(id x) {
         _label.text = x;
     }];
+     */
 }
 
 - (void)dealloc
